@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Supabase</string>
+    <string name="new_user">NewUser</string>
+    <string name="timestamp_pref">timestamp</string>
+</resources>

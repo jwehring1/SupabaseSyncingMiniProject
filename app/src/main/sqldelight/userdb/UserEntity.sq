@@ -1,0 +1,26 @@
+CREATE TABLE UserEntity (
+  uuid TEXT PRIMARY KEY NOT NULL,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+getUsers:
+SELECT * FROM UserEntity;
+
+getUserByUUID:
+SELECT * FROM UserEntity WHERE uuid = :uuid;
+
+getUsersSyncing:
+SELECT * FROM UserEntity WHERE updated_at > ? ORDER BY updated_at DESC;
+
+updateUser:
+UPDATE UserEntity SET first_name = :first_name, last_name = :last_name, email = :email, updated_at = :updated_at WHERE uuid = :uuid;
+
+createUser:
+INSERT INTO UserEntity(uuid, first_name, last_name, email, updated_at)
+VALUES (?, ?, ?, ?, ?);
+
+deleteUser:
+DELETE FROM UserEntity WHERE  uuid = :uuid;
