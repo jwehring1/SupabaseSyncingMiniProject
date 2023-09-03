@@ -1,6 +1,6 @@
 package com.example.supabase.domain.usecase.impl
 
-import com.example.supabase.data.repository.UserDataSource
+import com.example.supabase.data.repository.UserDao
 import com.example.supabase.data.repository.UserRepository
 import com.example.supabase.domain.model.Database
 import com.example.supabase.domain.model.User
@@ -8,12 +8,12 @@ import com.example.supabase.domain.usecase.GetShowUserUseCase
 
 class GetShowUserUseCaseImpl(
     private val userRepository: UserRepository,
-    private val userDao: UserDataSource,
+    private val userDao: UserDao,
 ) : GetShowUserUseCase {
     override suspend fun execute(input: GetShowUserUseCase.Input): GetShowUserUseCase.Output {
         val result = when(input.database) {
             Database.LocalDatabase -> {
-                userDao.getUserByUUID(input.uuid)
+                userDao.getUserByUUID(input.uuid)?.toUser()
             }
             Database.RemoteDatabase -> {
                 userRepository.getUserByUUID(input.uuid)

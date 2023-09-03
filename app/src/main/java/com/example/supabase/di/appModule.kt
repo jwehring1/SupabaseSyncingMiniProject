@@ -4,11 +4,10 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import app.cash.sqldelight.driver.android.AndroidSqliteDriver
+import androidx.room.Room
 import com.example.supabase.BuildConfig
-import com.example.supabase.data.repository.UserDataSource
+import com.example.supabase.data.repository.UserDatabase
 import com.example.supabase.data.repository.UserRepository
-import com.example.supabase.data.repository.impl.UserDataSourceImpl
 import com.example.supabase.data.repository.impl.UserRepositoryImpl
 import com.example.supabase.domain.usecase.CreateUserUseCase
 import com.example.supabase.domain.usecase.GetShowUserUseCase
@@ -25,7 +24,6 @@ import com.example.supabase.domain.usecase.impl.UpdateUserUseCaseImpl
 import com.example.supabase.presentation.feature.listuser.ListUserViewModel
 import com.example.supabase.presentation.feature.showuser.ShowUserViewModel
 import com.example.supabase.presentation.feature.updateuser.UpdateUserViewModel
-import com.example.supabase.userDb
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
 import org.koin.android.ext.koin.androidContext
@@ -50,9 +48,8 @@ val appModule: Module
 
 val databaseModule = module {
     single {
-        userDb(AndroidSqliteDriver(userDb.Schema, get(), "userDb.db"))
+        Room.databaseBuilder(get(), UserDatabase::class.java, "userDb").build().userDao()
     }
-    singleOf(::UserDataSourceImpl) { bind<UserDataSource>() }
 }
 
 val viewModelsModule = module {

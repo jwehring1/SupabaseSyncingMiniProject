@@ -6,7 +6,6 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
     kotlin("kapt")
     id("com.google.devtools.ksp")
-    id("app.cash.sqldelight") version "2.0.0"
 }
 
 android {
@@ -64,14 +63,6 @@ android {
     }
 }
 
-sqldelight {
-    databases {
-        create("userDb") {
-            packageName.set("com.example.supabase")
-        }
-    }
-}
-
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
     implementation("androidx.core:core-ktx:1.10.1")
@@ -109,8 +100,8 @@ dependencies {
     // Navigation Graph
     implementation("io.insert-koin:koin-androidx-navigation:3.4.3")
     implementation("io.insert-koin:koin-androidx-compose:3.4.3")
-    implementation("app.cash.sqldelight:android-driver:2.0.0")
-    implementation("app.cash.sqldelight:coroutines-extensions-jvm:2.0.0")
+    implementation("androidx.room:room-ktx:2.5.2")
+    ksp("androidx.room:room-compiler:2.5.2")
 }
 
 kapt {

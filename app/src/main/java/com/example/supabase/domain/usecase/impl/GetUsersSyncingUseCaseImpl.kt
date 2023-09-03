@@ -1,6 +1,6 @@
 package com.example.supabase.domain.usecase.impl
 
-import com.example.supabase.data.repository.UserDataSource
+import com.example.supabase.data.repository.UserDao
 import com.example.supabase.data.repository.UserRepository
 import com.example.supabase.domain.model.User
 import com.example.supabase.domain.usecase.GetUsersSyncingUseCase
@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 
 class GetUsersSyncingUseCaseImpl(
     private val userRepository: UserRepository,
-    private val userDao: UserDataSource
+    private val userDao: UserDao
 ) : GetUsersSyncingUseCase {
     override suspend fun execute(input: GetUsersSyncingUseCase.Input): GetUsersSyncingUseCase.Output =
         withContext(Dispatchers.IO) {

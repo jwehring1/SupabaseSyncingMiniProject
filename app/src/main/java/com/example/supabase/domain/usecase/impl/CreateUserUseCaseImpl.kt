@@ -1,6 +1,6 @@
 package com.example.supabase.domain.usecase.impl
 
-import com.example.supabase.data.repository.UserDataSource
+import com.example.supabase.data.repository.UserDao
 import com.example.supabase.data.repository.UserRepository
 import com.example.supabase.domain.model.Database
 import com.example.supabase.domain.usecase.CreateUserUseCase
@@ -13,7 +13,7 @@ import java.util.UUID
 
 class CreateUserUseCaseImpl(
     private val userRepository: UserRepository,
-    private val userDao: UserDataSource
+    private val userDao: UserDao
 ) : CreateUserUseCase {
     override suspend fun execute(input: CreateUserUseCase.Input): CreateUserUseCase.Output {
         return withContext(Dispatchers.IO) {
@@ -25,7 +25,7 @@ class CreateUserUseCaseImpl(
             }
 
             val localResult = if (input.database != Database.RemoteDatabase) {
-                userDao.createUser(user = input.user)
+                userDao.createUser(user = input.user.toUserModel()) > 0
             } else { null }
             val remoteResult = if (input.database != Database.LocalDatabase) {
                 userRepository.createUser(user = input.user)
