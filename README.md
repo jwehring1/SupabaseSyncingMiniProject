@@ -63,3 +63,5 @@ VALUES
 ## Branches
 
 - main: Koin Dependency Injection and SQLDelight local database
+- room: Koin Dependency Injection and Room local database
+- hilt: Dagger Hilt Dependency Injection and Room local database
