@@ -10,8 +10,9 @@ import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.UUID
+import javax.inject.Inject
 
-class CreateUserUseCaseImpl(
+class CreateUserUseCaseImpl @Inject constructor(
     private val userRepository: UserRepository,
     private val userDao: UserDao
 ) : CreateUserUseCase {

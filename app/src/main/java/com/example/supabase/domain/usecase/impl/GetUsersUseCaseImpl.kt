@@ -5,8 +5,9 @@ import com.example.supabase.domain.usecase.GetUsersUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class GetUsersUseCaseImpl(
+class GetUsersUseCaseImpl @Inject constructor(
     private val userDao: UserDao
 ) : GetUsersUseCase {
     override suspend fun execute(input: Unit): GetUsersUseCase.Output =

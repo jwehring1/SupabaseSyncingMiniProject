@@ -15,21 +15,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NavController
 import com.example.supabase.domain.model.User
 import com.example.supabase.presentation.feature.showuser.ShowUserViewModel
 import com.example.supabase.presentation.navigation.UpdateUserDestination
-import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShowUserScreen(
     modifier: Modifier = Modifier,
+    viewModel: ShowUserViewModel = hiltViewModel(),
     navController: NavController
 ) {
-    val viewModel = koinViewModel<ShowUserViewModel>()
     val user = viewModel.user.collectAsState(initial = User())
     val isLoading by viewModel.isLoading.collectAsState(initial = false)
 

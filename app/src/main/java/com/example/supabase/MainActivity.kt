@@ -8,7 +8,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.supabase.presentation.navigation.ListUserDestination
 import com.example.supabase.presentation.navigation.navRegistration
 import com.example.supabase.ui.theme.SupabaseTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

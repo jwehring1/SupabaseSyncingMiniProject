@@ -9,8 +9,9 @@ import kotlinx.coroutines.withContext
 import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import javax.inject.Inject
 
-class UpdateUserUseCaseImpl(
+class UpdateUserUseCaseImpl @Inject constructor(
     private val userRepository: UserRepository,
     private val userDao: UserDao
 ) : UpdateUserUseCase {

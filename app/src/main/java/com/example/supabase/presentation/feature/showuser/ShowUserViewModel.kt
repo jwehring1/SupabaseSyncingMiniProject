@@ -7,11 +7,14 @@ import com.example.supabase.domain.model.Database
 import com.example.supabase.domain.model.User
 import com.example.supabase.domain.usecase.GetShowUserUseCase
 import com.example.supabase.presentation.navigation.ShowUserDestination
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ShowUserViewModel(
+@HiltViewModel
+class ShowUserViewModel @Inject constructor(
     private val getShowUserUseCase: GetShowUserUseCase,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {

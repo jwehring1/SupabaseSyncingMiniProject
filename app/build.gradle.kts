@@ -6,6 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
     kotlin("kapt")
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -92,14 +93,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
     implementation("androidx.work:work-runtime-ktx:2.9.0-alpha01")
     implementation("androidx.tracing:tracing-ktx:1.1.0")
-    implementation("io.insert-koin:koin-android:3.4.3")
-    // Java Compatibility
-    implementation("io.insert-koin:koin-android-compat:3.4.3")
-    // Jetpack WorkManager
-    implementation("io.insert-koin:koin-androidx-workmanager:3.4.3")
-    // Navigation Graph
-    implementation("io.insert-koin:koin-androidx-navigation:3.4.3")
-    implementation("io.insert-koin:koin-androidx-compose:3.4.3")
+    implementation("com.google.dagger:hilt-android:2.47")
+    kapt("com.google.dagger:hilt-compiler:2.47")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.hilt:hilt-work:1.0.0")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation("androidx.room:room-ktx:2.5.2")
     ksp("androidx.room:room-compiler:2.5.2")
 }

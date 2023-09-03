@@ -6,8 +6,9 @@ import com.example.supabase.domain.model.User
 import com.example.supabase.domain.usecase.GetUsersSyncingUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class GetUsersSyncingUseCaseImpl(
+class GetUsersSyncingUseCaseImpl @Inject constructor(
     private val userRepository: UserRepository,
     private val userDao: UserDao
 ) : GetUsersSyncingUseCase {

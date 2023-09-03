@@ -9,11 +9,14 @@ import com.example.supabase.domain.usecase.CreateUserUseCase
 import com.example.supabase.domain.usecase.GetShowUserUseCase
 import com.example.supabase.domain.usecase.UpdateUserUseCase
 import com.example.supabase.presentation.navigation.ShowUserDestination
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UpdateUserViewModel(
+@HiltViewModel
+class UpdateUserViewModel @Inject constructor(
     private val getShowUserUseCase: GetShowUserUseCase,
     private val createUserUseCase: CreateUserUseCase,
     private val updateUserUseCase: UpdateUserUseCase,

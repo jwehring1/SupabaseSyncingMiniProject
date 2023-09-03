@@ -33,6 +33,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.supabase.R
@@ -40,16 +41,15 @@ import com.example.supabase.domain.model.User
 import com.example.supabase.domain.usecase.CreateUserUseCase
 import com.example.supabase.domain.usecase.UpdateUserUseCase
 import com.example.supabase.presentation.feature.updateuser.UpdateUserViewModel
-import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UpdateUserScreen(
     modifier: Modifier = Modifier,
+    viewModel: UpdateUserViewModel = hiltViewModel(),
     navController: NavController,
     userUUID: String?
 ) {
-    val viewModel = koinViewModel<UpdateUserViewModel>()
     val context = LocalContext.current
     val user = viewModel.user.collectAsStateWithLifecycle(initialValue = User())
     val firstName = viewModel.firstName.collectAsStateWithLifecycle(initialValue = "")

@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NavController
@@ -29,15 +30,14 @@ import com.example.supabase.presentation.navigation.ShowUserDestination
 import com.example.supabase.presentation.navigation.UpdateUserDestination
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListUserScreen(
     modifier: Modifier = Modifier,
+    viewModel: ListUserViewModel = hiltViewModel(),
     navController: NavController
 ) {
-    val viewModel = koinViewModel<ListUserViewModel>()
     val isLoading by viewModel.isLoading.collectAsState(initial = false)
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
     val context = LocalContext.current

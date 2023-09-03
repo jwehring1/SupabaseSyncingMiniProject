@@ -5,8 +5,9 @@ import com.example.supabase.data.repository.UserRepository
 import com.example.supabase.domain.model.Database
 import com.example.supabase.domain.model.User
 import com.example.supabase.domain.usecase.GetShowUserUseCase
+import javax.inject.Inject
 
-class GetShowUserUseCaseImpl(
+class GetShowUserUseCaseImpl @Inject constructor(
     private val userRepository: UserRepository,
     private val userDao: UserDao,
 ) : GetShowUserUseCase {

@@ -5,9 +5,10 @@ import com.example.supabase.domain.model.User
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Order
+import javax.inject.Inject
 import kotlin.Exception
 
-class UserRepositoryImpl(
+class UserRepositoryImpl @Inject constructor(
     private val supabaseClient: SupabaseClient
 ) : UserRepository {
 

@@ -8,6 +8,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.hilt.work.HiltWorker
 import androidx.work.Constraints
 import androidx.work.CoroutineWorker
 import androidx.work.NetworkType
@@ -20,6 +21,8 @@ import com.example.supabase.domain.usecase.CreateUserUseCase
 import com.example.supabase.domain.usecase.GetShowUserUseCase
 import com.example.supabase.domain.usecase.GetUsersSyncingUseCase
 import com.example.supabase.domain.usecase.UpdateUserUseCase
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -31,9 +34,10 @@ import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-class SyncWorker(
-    appContext: Context,
-    workerParams: WorkerParameters,
+@HiltWorker
+class SyncWorker @AssistedInject constructor(
+    @Assisted appContext: Context,
+    @Assisted workerParams: WorkerParameters,
     private val dataStore: DataStore<Preferences>,
     private val getUsersSyncingUseCase: GetUsersSyncingUseCase,
     private val showUserUseCase: GetShowUserUseCase,
@@ -210,11 +214,12 @@ class SyncWorker(
         /**
          * Expedited one time work to sync data on app startup
          */
-        fun startUpSyncWork() = OneTimeWorkRequestBuilder<SyncWorker>()
+        fun startUpSyncWork() = OneTimeWorkRequestBuilder<DelegatingWorker>()
             .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
             .setConstraints(Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .build())
+            .setInputData(SyncWorker::class.delegatedData())
             .build()
     }
 

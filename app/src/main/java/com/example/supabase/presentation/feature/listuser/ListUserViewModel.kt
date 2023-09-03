@@ -5,12 +5,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.supabase.domain.model.User
 import com.example.supabase.domain.usecase.GetUsersUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ListUserViewModel(
+@HiltViewModel
+class ListUserViewModel @Inject constructor(
     private val getUsersUseCase: GetUsersUseCase,
 ) : ViewModel() {
 
