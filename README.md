@@ -65,3 +65,5 @@ VALUES
 - main: Koin Dependency Injection and SQLDelight local database
 - room: Koin Dependency Injection and Room local database
 - hilt: Dagger Hilt Dependency Injection and Room local database
+    
+Before switching between databases, remember to perform the 'Clear Storage' action in the android settings of the app
