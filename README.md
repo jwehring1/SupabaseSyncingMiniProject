@@ -2,15 +2,7 @@
 
 ## Introduction
 
-Primary objective was to create a small-scale application designed to showcase the seamless synchronization of a local database using Room/SQLDelight with a remote database managed by Supabase. Additionally, the project aimed to leverage the WorkManager to facilitate efficient and automated data synchronization while adhering to the clean architecture Use Case pattern
-
-## Table of Contents
-
-- [Getting Started](#getting-started)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+The primary objective was to create a small-scale android application designed to showcase the seamless synchronization of a local database using Room/SQLDelight with a remote database managed by Supabase. Additionally, the project aimed to leverage the WorkManager to facilitate efficient and automated data synchronization while adhering to the clean architecture Use Case pattern.
 
 ## Getting Started
 
@@ -67,3 +59,7 @@ VALUES
      SUPABASE_ANON_KEY=your-supabase-api-key
      SUPABASE_URL=your-supabase-url
      ```
+
+## Branches
+
+- main: Koin Dependency Injection and SQLDelight local database
