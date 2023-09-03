@@ -11,14 +11,12 @@ import com.example.supabase.data.repository.UserRepository
 import com.example.supabase.data.repository.impl.UserDataSourceImpl
 import com.example.supabase.data.repository.impl.UserRepositoryImpl
 import com.example.supabase.domain.usecase.CreateUserUseCase
-import com.example.supabase.domain.usecase.DeleteUserUseCase
 import com.example.supabase.domain.usecase.GetShowUserUseCase
 import com.example.supabase.domain.usecase.GetUsersSyncingUseCase
 import org.koin.dsl.module
 import com.example.supabase.domain.usecase.GetUsersUseCase
 import com.example.supabase.domain.usecase.UpdateUserUseCase
 import com.example.supabase.domain.usecase.impl.CreateUserUseCaseImpl
-import com.example.supabase.domain.usecase.impl.DeleteUserUseCaseImpl
 import com.example.supabase.domain.usecase.impl.GetShowUserUseCaseImpl
 import com.example.supabase.domain.usecase.impl.GetUsersSyncingUseCaseImpl
 import com.example.supabase.domain.usecase.impl.GetUsersUseCaseImpl
@@ -69,7 +67,6 @@ val useCasesModule = module {
     singleOf(::GetUsersSyncingUseCaseImpl) { bind<GetUsersSyncingUseCase>() }
     singleOf(::GetUsersUseCaseImpl) { bind<GetUsersUseCase>() }
     singleOf(::UpdateUserUseCaseImpl) { bind<UpdateUserUseCase>() }
-    singleOf(::DeleteUserUseCaseImpl) { bind<DeleteUserUseCase>() }
 }
 
 val dataStoreModule = module {

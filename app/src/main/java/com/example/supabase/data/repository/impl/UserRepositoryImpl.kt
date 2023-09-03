@@ -59,15 +59,4 @@ class UserRepositoryImpl(
             false
         }
     }
-
-    override suspend fun deleteByUUID(userUUID: String): Boolean {
-        return try {
-            supabaseClient.postgrest["users"].delete {
-                eq("uuid", userUUID)
-            }
-            true
-        } catch (e: Exception) {
-            false
-        }
-    }
 }

@@ -15,6 +15,4 @@ interface UserDataSource {
 
     suspend fun createUser(user: User): Boolean
 
-    suspend fun deleteByUUID(userUUID: String): Boolean
-
 }

@@ -61,15 +61,4 @@ class UserDataSourceImpl(
             return@withContext true
         }
     }
-
-    override suspend fun deleteByUUID(userUUID: String): Boolean {
-        return withContext(Dispatchers.IO) {
-            queries.getUserByUUID(userUUID).executeAsOneOrNull() ?: return@withContext false
-            queries.deleteUser(userUUID)
-            if (queries.getUserByUUID(userUUID).executeAsOneOrNull() != null) {
-                return@withContext false
-            }
-            return@withContext true
-        }
-    }
 }
